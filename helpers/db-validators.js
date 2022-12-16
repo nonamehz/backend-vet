@@ -1,4 +1,6 @@
+const { where } = require('sequelize');
 const Mascota = require('../models/mascota');
+const Rol = require('../models/rol');
 const Usuario = require('../models/usuario');
 
 
@@ -28,9 +30,16 @@ const existeMascotaPorId = async (id) => {
     }
 }
 
+const esRoleValidoAdmin = async (rol = '') => {
+    if (rol !== 'ADMIN_ROLE') {
+        throw new Error(`El rol ${rol} es tiene permiso para esta acción`);
+    }
+}
+
 
 module.exports = {
     emailExiste,
     existeUsuarioPorId,
-    existeMascotaPorId
+    existeMascotaPorId,
+    esRoleValidoAdmin
 }
