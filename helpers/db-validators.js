@@ -1,3 +1,4 @@
+const Mascota = require('../models/mascota');
 const Usuario = require('../models/usuario');
 
 
@@ -20,8 +21,16 @@ const existeUsuarioPorId = async (id) => {
     }
 }
 
+const existeMascotaPorId = async (id) => {
+    const existeMascota = await Mascota.findByPk(id);
+    if (!existeMascota) {
+        throw new Error(`El id no existe ${id}`);
+    }
+}
+
 
 module.exports = {
     emailExiste,
-    existeUsuarioPorId
+    existeUsuarioPorId,
+    existeMascotaPorId
 }
