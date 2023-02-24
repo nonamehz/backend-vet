@@ -18,5 +18,5 @@ Comandos Iniciales
 
 ```bash
     npm install     [Instalar dependencias]
-    npm run dev     [Iniciar aplicación]
+    npm run dev     [Iniciar servidor]
 ```
