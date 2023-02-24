@@ -1,4 +1,7 @@
 const nodemailer = require('nodemailer');
+// const nodemailerSendgrid = require('nodemailer-sendgrid')
+
+const { template } = require('./email-template');
 
 
 const enviarEmailAceptado = async (datos) => {
@@ -20,9 +23,7 @@ const enviarEmailAceptado = async (datos) => {
         to: email,
         subject: 'Solicitud de Adopción',
         text: 'Tu solicitud de adopción fue aceptado',
-        html: `<p>Hola: ${firstName} ${lastName}</p>
-        <p>Te informamos que la solicitud fue aceptada, puedes acercarte a la veterinaria.</p>
-        `
+        html: template(true),
     });
 
     console.log('Mensaje enviado', info.messageId);
@@ -47,9 +48,7 @@ const enviarEmailRechazado = async (datos) => {
         to: email,
         subject: 'Solicitud de Adopción',
         text: 'Tu solicitud de adopción fue reachazada',
-        html: `<p>Hola: ${firstName} ${lastName}</p>
-                <p>Lamentamos informarte que tu solicitud fue rechazada</p>
-        `
+        html: template(false)
     });
 
     console.log('Mensaje enviado', info.messageId);
